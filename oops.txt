@@ -1,0 +1,42 @@
+Inbuilt copy constructor does shallow copy ie changes in one object will be reflected in other object which was copied from it.
+strlen doesn't add null char
+
+Initialisation List initializes the const variables of a class at the time of object creation or memory allocation of variables.
+Initialisation List uses constructor for initialising const variables values.
+
+On declaring an object constant, we can call only constant function of that object.
+constant function: which doesn't change any property of current object.
+
+static: only one copy is shared by all the objects of that class
+static values can't be initialized inside the class
+Initialisation: datatype classname :: staticvariable = value.
+Accessibility: classname :: staticvariable
+static function can only access static properties.
+
+nesting isn't allowed on post increment operator
+
+MAIN
+
+By using virtual base classes we can avoid copy of a class in derived class.
+If a base class pointer is pointing to it's derived class object, then it can access only those properties which are present in it's base class.
+Compile Time Polymorphism: Calling the function of pointer variable class.
+Run Time Polymorphism: Calling the function of pointed object's class.
+
+
+Virtual functions are those which are present in the base class and are overriden in derived class.
+By using virtual functions we can take decision at runtime.
+
+By using pure virtual functions in a class, that class becomes abstract and we can't make object of that class then.
+
+Whenever we want to force a child class to implement a certain function then we make that function pure virtual in the base class.
+void virtual func() = 0
+Class having one or more pure virtual functions is called an abstract class.
+We can't make object of an abstract class.
+
+By making a function friend of a given class, it can access all the data members of that class.
+We can also make whole class friend of another class.
+friend class Bus,
+friend void Bus :: print(),
+
+Access modifiers doesn't work for friend functions.
+this keyword can't be used inside friend functions.

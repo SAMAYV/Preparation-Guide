@@ -1,0 +1,100 @@
+https://codingninjas.in/app/invite/GTSLY
+
+https://classroom.codingninjas.in/app/invite/GTSLY
+
+Value in symbol table can't be changed.
+
+symbol table stores addresses of different variables.
+
+Array goes as a pointer in functions when passed as a parameter. Hence sizeof(a) is 8 in functions while is 4*n when not 
+in functions. 
+
+We use 'int*a' in place of 'pointer a' so that during dereferencing we will be able to knew which type of data is it 
+and how much we have to move to go to a specific address or how much bytes we have to read from that and intrepret them.
+
+The array which we want to make, it's size should be fixed at compile time only not at run time.
+
+Inline function is replaced in the main during the compile time only. After that the function is removed automatically. 
+Function doesn't happen to be in the code during the runtime.
+
+If we made every function inline then the a.out file size will be increased too much.
+
+On writing inline before a function, we are giving a hint to the compiler to make that function inline but it is not 
+necessary that the compiler will make it inline. In big functions, compiler ignores to include that function as inline.
+
+When you initialize a constant integer, you need to initialize it there itself.
+
+On using const keyword, value doesn't become constant but path becomes constant.
+
+If you have a read only path to an integer initially, you can't have both read and write paths to that integer using 
+pointers.
+
+Segmentation fault occurs when you are accessing more memory from an array which doesn't belongs to that array and compiler
+doesn't allows us to use that memory or when you are asking for memory but it doesn't have any memory to give.
+
+Getters are used to get any private value by using public member functions of the class.
+Setters are used to edit any private value by using public member functions of the class.
+ 
+Inbuilt constructor in a class is a default constructor. It is not accessible when any of the default or parametrized 
+constructor is created inside the class. 
+When the class is only has parametrized constructor and we are creating a default constructor object, error will occurred.
+
+For an object, constructor is called when it is created and is called only once in its lifetime.
+
+Copy constructor creates copy at the time of creation of an object and other object is already created.
+Copy assignment operator copies one object to other when both are in memory or are already created.
+
+Destructor deallocates object memory. It is called just before when scope of object gets over.
+On creating a new destructor, inbuilt destructor is not accessible.
+
+Inbuilt copy constructor uses shallow copying while copying contents of already created object into new object.
+
+Deep copying creates new array and value of pointer is different as that of value of that pointer in the main.
+Shallow copying uses same pointer value as that in the main. Hence changing value in the main reflects changes in the 
+object values also.
+
+On using defined copy constructor, inbuilt copy constructor is not available to us.
+
+We can't call any function of the class through a constant object. You can call only constant functions.
+Constant functions are those which cannot change any property of the current object. It can do changes in the other object.   
+To declare a function constant, we need to mark it constant.
+
+For a function to be used by a constant object, the function should be constant function and we need to mark the function 
+explicitly as constant.
+
+While creating functions of class, We should mark those functions as constant which do not change the value of properties 
+of the class.
+
+Declaring a member of a class as static will make that property same for all the objects of that class and there is only 
+one copy of it which will be used by all the class objects.
+
+Static members of a class can be initialize outside the class only.
+Static functions can access only static data members and static member functions only.
+We can't use this keyword inside static functions.
+
+Copy assignment operators and copy constructors do shallow copy only.
+
+Abstract data type means that operations like insert, delete etc are allowed in a specific order only.
+To use INT_MIN, INT_MAX like constants, use #include <climits.h>
+When we create an object, memory for data members are allocated.
+
+We can pass userdefined data types and default data types in template.
+O is treated as NULL when seen as an pointer.
+
+Definition of template has to be used before every class in which that template is being used.
+
+.h files are header files. They don't include main.
+#include means copying of the code present in that file to present file.
+File name is in quotes to search for that file in the current directory.
+To include an inbuilt file use 
+	#include <filename>
+
+First Index in queue: where we have to delete first element.
+Next index: where we have to insert next element.
+
+Same parent means siblings.
+Descendant of a node means children of that node, grand children of that earlier node etc.
+Vector is a template.
+delete will call destructor.
+
+In Binary tree, each node has atmost 2 children.

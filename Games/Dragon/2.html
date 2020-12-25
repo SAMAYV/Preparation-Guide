@@ -1,0 +1,108 @@
+<html> <body>
+	<canvas style="margin-top:30px;display: block ;padding-left: 0; padding-right: 0; margin-left: auto; margin-right: auto;" id="myCanvas" width="700" height="320"></canvas>
+	<br>
+	<marquee>Mission&#127894;&#65039;Helix</marquee>
+	<marquee><i>Coded this game today : ADD YOUR NAME HERE </i></marquee>
+	<p>Share your game screenshot on Linkedin after session with hashtags <b>#LearnInspireGrow #DragonJumpGame. Also add your name in Marquee.</b></p>
+	<script>
+		// Made with love to inspire others by Coding Club India team !
+		// Step 2
+		// Add clouds
+
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		var width = 700;
+		var height = 320;
+
+		function drawObject(object){
+			//Find current index of image to be used.
+			var currentImageIndex = counter%object.images.length;
+			//Access image from array of images
+			var currentImage = object.images[currentImageIndex];
+			//Draw of canvas
+			ctx.drawImage(currentImage,object.x-(object.width/2),object.y-(object.height/2),object.width,object.height);
+		}
+
+		var dragonImages = [];
+		
+		var dragonImageUrls = ["https://i.imgur.com/dyPMw7K.png","https://i.imgur.com/WwUcIUd.png","https://i.imgur.com/cO9ZZMC.png","https://i.imgur.com/AJUkc9s.png","https://i.imgur.com/6xIWhPr.png"];
+		 //,"https://i.imgur.com/SCqOXcT.png"];
+		 
+		for( var i=0; i<dragonImageUrls.length ; i++ ){
+			var image = new Image();
+			image.src = dragonImageUrls[i];
+			dragonImages.push(image);
+		}
+
+		var dragon = {};
+		dragon.images = dragonImages ;
+		dragon.width = 50;
+		dragon.height = 50;
+		dragon.x=100;
+		dragon.y=280;
+		dragon.speedX = 0;
+		dragon.speedY = 0;
+
+		var clouds = [];
+		var cloudImage = new Image();
+		cloudImage.src = "https://i.imgur.com/H84RIEb.png";
+
+		function getCloud(){
+
+			var cloud = {};
+			cloud.images = [cloudImage] ;
+			cloud.width = 50;
+			cloud.height = 50;
+			cloud.x=width;
+			cloud.y=30+Math.random()*75;
+			cloud.isActive = true;
+			cloud.speedX = -4 -( Math.random()*4);
+			cloud.speedY = 0;
+			
+			cloud.move = function(){
+				this.x = this.x + this.speedX;
+				if(this.x < -100 ){
+					this.isActive = false;
+				}
+			}
+
+			return cloud;		
+		}
+
+
+		var counter = 0;
+		function update(){
+			counter++;
+			
+			if(counter%30==0){
+				// Create new cloud and store it in array named clouds
+				var cloud = getCloud();
+				clouds.push(cloud);
+			} 
+
+			//Clear all backgroud to white
+			ctx.fillStyle = "#ffffff";
+			ctx.fillRect(0, 0, width, height);
+
+			drawObject(dragon);
+		
+			var cloudsFinal = [];
+			for(var i = 0; i < clouds.length ; i++){
+				var cloud = clouds[i];
+
+				cloud.move();
+				drawObject(cloud);
+
+				if( cloud.isActive == true){
+					cloudsFinal.push(cloud);
+				}
+			}
+			clouds = cloudsFinal;
+		}
+
+		setInterval(update,50);
+
+	</script>
+	
+</body>
+</html>

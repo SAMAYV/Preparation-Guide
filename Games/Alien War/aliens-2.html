@@ -1,0 +1,152 @@
+<html>
+
+<head>
+</head>
+
+<body>
+
+	<canvas style="margin-top:30px;display: block ;padding-left: 0; padding-right: 0; margin-left: auto; margin-right: auto;" id="myCanvas" width="520" height="520">
+		
+	</canvas>
+	<br>
+	<marquee>Mission&#127894;&#65039;Helix</marquee>
+	<marquee><i>Coded this game today : ADD YOUR NAME HERE </i></marquee>
+	<br><br><br><br><br><p>You can share your game screenshot on Linkedin after session with hashtags <b>#LearnInspireGrow #AlienWarGame. Also add your name in Marquee.</b></p>
+	<script>
+		// Made with love by Rishabh Jain !
+		// Addding ships 
+		// Giving them speed
+
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+
+		var counter = 0;
+
+		function drawObject(object){
+			//Find current index of image to be used.
+			var currentImageIndex = counter%object.images.length;
+			//Access image from array of images
+			var currentImage = object.images[currentImageIndex];
+			//Draw of canvas
+			ctx.drawImage(currentImage,object.x,object.y,object.width,object.height);
+		}
+
+		var WIDTH = 520;
+
+		var ships = [];
+		var shipImages = [];
+		var shipUrls = ["https://i.imgur.com/gLLRj2T.png",
+		"https://i.imgur.com/ZhshGO4.png",
+		"https://i.imgur.com/E0wiPJC.png",
+		"https://i.imgur.com/WmsDf2l.png",
+		"https://i.imgur.com/EjfY1iE.png",
+		"https://i.imgur.com/t3VGw8g.png",
+		"https://i.imgur.com/d6OT3qt.png"];
+
+
+		for(var i = 0;i< shipUrls.length ;i++){
+			var shipImage = new Image();
+			shipImage.src = shipUrls[i];
+			shipImages.push(shipImage);
+		}
+
+			
+		for(var i=0;i<5;i++){
+			var ship = {};
+			ship.images = shipImages;
+			ship.x = (Math.random()*1000000)%WIDTH;
+			ship.y = 0;
+			ship.width = 80;
+			ship.height = 80;
+			ship.speedX = 1 + Math.random()*3;
+			ship.speedY = 0.7;
+
+			ship.move = function(){
+				if( this.x+this.width >= WIDTH && this.speedX >0 ){
+					// now move in left
+					this.speedX = - this.speedX;
+				}
+				if( this.x <=0 && this.speedX < 0 ){
+					// now move in right
+					this.speedX = - this.speedX;
+				}
+				this.x += this.speedX;
+				this.y += this.speedY;
+
+				// Reappear
+				if(this.y>=600) {
+					this.y = -50;
+				} 
+			}
+			ships.push(ship);			
+		}
+
+
+		var alienImages = [];
+		var alienImageUrls = ["https://i.imgur.com/tvJOu59.png","https://i.imgur.com/e1pkJRF.png","https://i.imgur.com/aRumf1r.png","https://i.imgur.com/jjOPpWL.png","https://i.imgur.com/hsdEpsM.png","https://i.imgur.com/u5eNyl8.png"];
+		 
+		for( var i=0; i<alienImageUrls.length ; i++ ){
+			var image = new Image();
+			image.src = alienImageUrls[i];
+			alienImages.push(image);
+		}
+
+		var alien = {};	alien.images = alienImages ; alien.width = 100; alien.height = 100; alien.x=300; alien.y=300; alien.speed = 7;
+
+		var keyMap = {};
+		keyMap[38]	= { name :"up",		active:false , onactive: function() { alien.y-=alien.speed; } };
+		keyMap[40]	= { name :"down",	active:false , onactive: function() { alien.y+=alien.speed; } };
+		keyMap[37]	= { name :"left",	active:false , onactive: function() { alien.x-=alien.speed; } };
+		keyMap[39]	= { name :"right",	active:false , onactive: function() { alien.x+=alien.speed; } };
+		keyMap[32]	= { name :"space", 	active:false , onactive: function() { fireBullet(); } };
+
+		//step 2
+		function handleKey(event, status) {
+			var currentController = keyMap[event.keyCode];
+		    console.log(status);
+			if(!!currentController){
+				currentController.active = status;
+			}
+		}
+
+		document.addEventListener("keydown", function(event) {
+		    handleKey(event, true);
+		});
+
+		document.addEventListener("keyup", function(event) {
+		    handleKey(event, false);
+		});
+
+
+		function update(){
+			counter++;
+			
+			//Clear all backgroud to black
+			ctx.fillStyle = "#000000";
+			ctx.fillRect(0, 0, 520, 520);
+
+			//Hovering effect
+			alien.x += -2+Math.random()*4;
+			alien.y += -2+Math.random()*4;
+
+			for(var key in keyMap){
+				var currentController = keyMap[key];
+				if( currentController.active){
+					currentController.onactive();
+				}
+				console.log(JSON.stringify(keyMap))
+			}
+
+			drawObject(alien);
+			for(var i=0;i<ships.length;i++){
+				drawObject(ships[i]);
+				ships[i].move();				
+			}
+		}
+
+		setInterval(update,50);
+
+	</script>
+	
+</body>
+</html>
