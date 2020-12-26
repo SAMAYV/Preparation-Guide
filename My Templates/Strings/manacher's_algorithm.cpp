@@ -28,7 +28,10 @@ void manacher_algorithm(string s)
 	    d2[i] = k--;
 	    if(i + k > r){
 	        l = i - k - 1;
-	        r = i + k ;
+	        r = i + k;
 	    }
 	}
 }
+
+// We can notice that every iteration of trivial algorithm increases r by one. 
+// Also r cannot be decreased during the algorithm. So, trivial algorithm will make O(n) iterations in total.
