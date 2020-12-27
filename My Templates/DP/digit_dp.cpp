@@ -1,8 +1,6 @@
 // How many numbers x are there in the range a to b, where the digit d occurs exactly k times in x?
-ll const n = 1e5 + 5;
-ll m = 20;
 
-ll dp[n][m][2];
+ll dp[100005][20][2];
 
 // dp[p][c][f] = Number of valid numbers <= b from this state
 // p = current position from left side (zero based)
@@ -28,7 +26,7 @@ ll memo(ll pos,ll cnt,ll f,vector<ll>& num)
         if(i == d) ncnt++;
         if(ncnt <= k) res += memo(pos+1, ncnt, f & (i == LMT), num);
     }
-    return DP[pos][cnt][f] = res;
+    return dp[pos][cnt][f] = res;
 }
 
 ll solve(ll b)
@@ -42,7 +40,7 @@ ll solve(ll b)
     // Stored all the digits of b in num for simplicity
 
     memset(dp,-1,sizeof(dp));
-    return res = memo(0,0,1,num);
+    return memo(0,0,1,num);
 }
 
 int main() 
