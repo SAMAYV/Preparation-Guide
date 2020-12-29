@@ -9,17 +9,19 @@ void compute(ll i,ll jleft,ll jright,ll kleft,ll kright)
         return;    
     } 
     ll jmid = (jleft + jright) / 2;
-    dp[i][jmid] = 1e18;
-    bestk = -1; 
+    ll best = 1e18;
+    ll bestk = 0; 
 
     // calculating the answer for jmid and state[i][jmid] <= state[i][j] for all j >= jmid due to monotonicity
-    REP(k,kleft,jmid+1){
+    REP(k,kleft,(ll)min(jmid,kright+1)){
         if(dp[i - 1][k] + C[k + 1][jmid] < best){
-            dp[i][jmid] = dp[i - 1][k] + C[k + 1][jmid]; 
+            best = dp[i - 1][k] + C[k + 1][jmid]; 
             bestk = k;
             state[i][jmid] = k;
         } 
     } 
+    dp[i][jmid] = best;
+
     // Divide and conquer 
     if(jleft <= jmid - 1){
         compute(i, jleft, jmid - 1, kleft, bestk);
@@ -31,17 +33,24 @@ void compute(ll i,ll jleft,ll jright,ll kleft,ll kright)
 
 void solve(ll n,ll m){
     dp.clear();
-    dp.resize(m+1,vector<ll>(n,0));
+    dp.resize(m+1,vector<ll>(n+1,0));
     state.clear();
-    state.resize(m+1,vector<ll>(n,0));
+    state.resize(m+1,vector<ll>(n+1,0));
     C.clear();
-    C.resize(n,vector<ll>(n,0));
+    C.resize(n+1,vector<ll>(n+1,0));
     
-    // compute C
     // calculate for i = 0
+    dp[0][0] = 0;
+    REP(i,1,n+1){
+        dp[0][i] = 1e18;
+    }
+    REP(i,1,m+1){
+        dp[i][0] = 1e18;
+    }
+    // compute C
 
     REP(i,1,m+1){
-        compute(i,0,n-1,0,n-1);
+        compute(i,1,n,0,n);
     }
 }
 
