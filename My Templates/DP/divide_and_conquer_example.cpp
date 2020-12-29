@@ -1,3 +1,5 @@
+// https://www.codechef.com/problems/CHEFAOR
+
 vector<vector<ll>> dp,C,state;
 
 // This can be done by the following pseudocode which for fixed i applies divide and conquer on j  
@@ -9,12 +11,11 @@ void compute(ll i,ll jleft,ll jright,ll kleft,ll kright)
         return;    
     } 
     ll jmid = (jleft + jright) / 2;
-    dp[i][jmid] = 1e18;
-    bestk = -1; 
+    ll bestk = 0; 
 
     // calculating the answer for jmid and state[i][jmid] <= state[i][j] for all j >= jmid due to monotonicity
-    REP(k,kleft,jmid+1){
-        if(dp[i - 1][k] + C[k + 1][jmid] < best){
+    REP(k,kleft,jmid){
+        if(dp[i - 1][k] + C[k + 1][jmid] > dp[i][jmid]){
             dp[i][jmid] = dp[i - 1][k] + C[k + 1][jmid]; 
             bestk = k;
             state[i][jmid] = k;
@@ -29,25 +30,40 @@ void compute(ll i,ll jleft,ll jright,ll kleft,ll kright)
     } 
 }
 
-void solve(ll n,ll m){
+void solve(ll n,ll m,ll arr[]){
     dp.clear();
-    dp.resize(m+1,vector<ll>(n,0));
+    dp.resize(m+1,vector<ll>(n+1,0));
     state.clear();
-    state.resize(m+1,vector<ll>(n,0));
+    state.resize(m+1,vector<ll>(n+1,0));
     C.clear();
-    C.resize(n,vector<ll>(n,0));
+    C.resize(n+1,vector<ll>(n+1,0));
     
     // compute C
-    // calculate for i = 0
-
-    REP(i,1,m+1){
-        compute(i,0,n-1,0,n-1);
+    REP(i,1,n+1){
+        REP(j,i,n+1){
+            C[i][j] = arr[j-1];
+            if(i <= j-1) C[i][j] |= C[i][j-1];
+        }
     }
+    // calculate for i = 0
+    REP(i,1,m+1){
+        compute(i,0,n,0,n);
+    }
+    cout<<dp[m][n]<<endl;
 }
 
-/*
-Some dynamic programming problems have a recurrence of this form: dp(i,j) = (k ≤ j)min{dp(i − 1,k) + C(k+1,j)} where C(k+1,j) is some cost function.
-Say 1 ≤ i ≤ n and 1 ≤ j ≤ m, and evaluating C takes O(1) time. Straightforward evaluation of the above recurrence is O(n*m*m).
-Let opt(i,j) be the value of k that minimizes the above expression. If opt(i,j) ≤ opt(i,j+1) for all i,j, then we can apply divide-and-conquer DP. 
-This known as the monotonicity condition. The optimal "splitting point" for a fixed i increases as j increases.
-*/
+int main()
+{
+    ll t;
+    cin>>t;
+    while(t--){
+        ll n,k;
+        cin>>n>>k;
+        ll arr[n];
+        REP(i,0,n){
+            cin>>arr[i];
+        }
+        solve(n,k,arr);
+    }
+    return 0;
+}
