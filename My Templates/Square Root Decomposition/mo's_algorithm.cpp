@@ -1,27 +1,29 @@
-ll const block_size = 1000;
+ll const block_size = 500;
 
 struct Query {
     ll l, r, idx;
-    bool operator<(Query other) const
-    {
-        return make_pair(l / block_size, r) <
-               make_pair(other.l / block_size, other.r);
+    bool operator <(const Query& n) const {
+        ll p1 = (l/sz);
+        ll p2 = (n.l/sz);
+        if(p1 == p2){
+            if(p1 & 1){
+                return r > n.r;
+            }
+            else {
+                return r < n.r;
+            }
+        }
+        return p1 < p2;
     }
 };
 
-bool cmp(Query p,Query q) {
-    if((p.l / block_size) != (q.l / block_size))
-        return p < q;
-    return ((p.l / block_size) & 1) ? (p.r < q.r) : (p.r > q.r);
-}
-
-vector<ll> mo_s_algorithm(vector<Query> queries) {
+vector<ll> mo_s_algorithm(vector<Query>& queries,ll n){
     vector<ll> answers(queries.size());
-    sort(queries.begin(), queries.end(), cmp);
+    sort(queries.begin(),queries.end());
 
     ll cur_l = 0, cur_r = -1;
 
-    for(Query q : queries) {
+    for(Query q : queries){
         while(cur_l > q.l){
             cur_l--;
             add(cur_l);
@@ -53,11 +55,5 @@ If we only look at all queries having the left index in the same block, the quer
 times for all these queries combined. This gives O(N/S*N)calls for all blocks.
 The value of cur_l can change by at most O(S) during between two queries. Therefore we have an additional O(SQ) calls of add(cur_l) and remove(cur_l).
 
-*/
-
-int main()
-{   
-
-    return 0;
-}   
+*/ 
     
