@@ -67,6 +67,18 @@ ftype cross(point2d a, point2d b){
 point2d intersect(point2d a1, point2d d1, point2d a2, point2d d2){
     return a1 + cross(a2 - a1, d2) / cross(d1, d2) * d1;
 }
+ll signed_area_parallelogram(point2d p1, point2d p2, point2d p3){
+    return cross(p2 - p1, p3 - p2);
+}
+double triangle_area(point2d p1, point2d p2, point2d p3){
+    return abs(signed_area_parallelogram(p1, p2, p3)) / 2.0;
+}
+bool clockwise(point2d p1, point2d p2, point2d p3){
+    return signed_area_parallelogram(p1, p2, p3) < 0;
+}
+bool counter_clockwise(point2d p1, point2d p2, point2d p3){
+    return signed_area_parallelogram(p1, p2, p3) > 0;
+}
 
 
 struct point3d 
