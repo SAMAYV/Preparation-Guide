@@ -1,5 +1,4 @@
-typedef long long C;
-typedef complex<C> P;
+typedef complex<ll> P;
 #define X real()
 #define Y imag()
 
@@ -33,4 +32,11 @@ int main()
 	P a = {4,2};
 	P b = {1,2};
 	C p = (conj(a) * b).Y; // 6
+
+	// The cross product (p-s1)*(p-s2) tells us the location of the point p. If the cross product is positive, p is located on 
+	// the left side, and if the cross product is negative, p is located on the right side. Finally, if the cross product is zero, points
+	// s1, s2 and p are on the same line.
+
+	// Another feature of cross products is that the area of a triangle can be calculated using the formula |(a - c)*(b - c)|/2
+
 }
