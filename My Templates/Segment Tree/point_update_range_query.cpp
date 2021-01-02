@@ -8,6 +8,7 @@ void buildtree(ll* tree,ll start,ll end,ll treenode,ll* arr){
     buildtree(tree,mid+1,end,2*treenode+1,arr);
     tree[treenode] = min(tree[2*treenode],tree[2*treenode+1]);
 }
+
 void update(ll* tree,ll start,ll end,ll treenode,ll ind,ll val){
     if(ind < start || ind > end){
         return;
