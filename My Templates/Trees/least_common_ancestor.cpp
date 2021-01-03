@@ -1,14 +1,16 @@
-void dfs(vector<ll>& parent,vector<ll>* edges,ll curr,ll par,vector<ll>& depth,ll d){
+ll depth[maxn], parent[maxn];
+
+void dfs(vector<ll>* edges,ll curr,ll par,ll d){
 	depth[curr] = d;
 	parent[curr] = par;
 	for(auto it : edges[curr]){
 		if(it != prev){
-			dfs(parent,edges,it,curr,depth,d + 1);
+			dfs(edges,it,curr,d + 1);
 		}
 	}
 }
-void initialize(vector<ll>* edges,ll n,vector<ll>& depth,vector<ll>& parent,vector<vector<ll>>& arr){
-	dfs(parent,edges,1,0,depth,1);
+void initialize(vector<ll>* edges,ll n,vector<vector<ll>>& arr){
+	dfs(edges,1,0,1);
 	REP(j,1,n+1){
 		arr[0][j] = parent[j];
 	}
@@ -19,29 +21,29 @@ void initialize(vector<ll>* edges,ll n,vector<ll>& depth,vector<ll>& parent,vect
 		}
 	}
 }
-ll LCA(ll x,ll y,vector<vector<ll>>& arr,vector<ll>& depth){
+ll LCA(ll x,ll y,vector<vector<ll>>& lca){
 	if(depth[x] > depth[y]){
 		swap(x,y);
 	}
 	ll diff = depth[y] - depth[x];
 	REP(i,0,60){
 		if((diff >> i) & 1){
-			y = arr[i][y];
+			y = lca[i][y];
 		}
 		if(diff == 0) break;
 	}
 	REPI(i,0,20){
-		if(arr[i][x] != arr[i][y]){
-			x = arr[i][x];
-			y = arr[i][y];
+		if(lca[i][x] != lca[i][y]){
+			x = lca[i][x];
+			y = lca[i][y];
 		}
 		if(x == y){
 			break;
 		}
 	}
 	if(x != y){
-		x = arr[0][x];
-		y = arr[0][y];
+		x = lca[0][x];
+		y = lca[0][y];
 	}
 	return x;
 }
@@ -57,19 +59,16 @@ int main()
 		edges[y].push_back(x);
 	}
 	
-	vector<vector<ll>> arr;
-	arr.resize(20,vector<ll>(n+1));
-	vector<ll> depth(n+1,0);
-	vector<ll> parent(n+1,-1);
-	parent[1] = 0;
-	initialize(edges,n,depth,parent,arr);
+	vector<vector<ll>> lca;
+	lca.resize(20,vector<ll>(n+1));
+	initialize(edges,n,lca);
 
 	ll q;
 	cin>>q;
 	while(q--){
 		ll x,y;
 		cin>>x>>y;
-		cout<<LCA(x,y,arr,depth)<<endl;
+		cout<<LCA(x,y,lca)<<endl;
 	}
 	return 0;	
 } 
