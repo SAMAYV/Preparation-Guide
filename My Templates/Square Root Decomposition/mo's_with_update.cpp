@@ -56,37 +56,30 @@ int main()
     ll arr[n];
     REP(i,0,n) cin>>arr[i];
 
-    vector<Query> queries(m);
+    vector<Query> queries;
     vector<pair<ll,ll>> upd;
-    
+    ll updates = -1;
     REP(i,0,m){
-    	cin>>queries[i].type;
-    	if(queries[i].type == 1){
-    		cin>>queries[i].l;
-    		queries[i].l--;
-    		queries[i].r = queries[i].l;
-    		ll x;
-            cin>>x;
-    		upd.push_back({queries[i].l,x});
-    		queries[i].t = 1;   		
-    	}
-    	else {
-    		cin>>queries[i].l>>queries[i].r;
-    		queries[i].l--;
-    		queries[i].r--;
-    		queries[i].t = 0;
-    	}
-    	queries[i].idx = i;
-    }
-    REP(i,1,m){
-    	queries[i].t += queries[i-1].t;
-    }
-    REP(i,0,m){
-    	queries[i].t--;
+        ll type; cin>>type;
+        if(type == 2){
+            ll l,x;
+            cin>>l>>x;
+            upd.push_back({l-1,x});
+            updates++;
+        }
+        else {
+            Query q;
+            cin>>q.l>>q.r;
+            q.l--;
+            q.r--;
+            q.t = updates;
+            q.idx = queries.size();
+            queries.push_back(q);
+        }
     }
     vector<ll> v = mo_s_algorithm(queries,upd,arr,n);
     REP(i,0,v.size()){
-    	if(queries[i].type == 2) cout<<v[i]<<endl;
+    	cout<<v[i]<<endl;
     }
     return 0;
 }

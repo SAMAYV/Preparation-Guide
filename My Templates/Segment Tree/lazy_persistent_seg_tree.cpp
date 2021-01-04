@@ -56,7 +56,7 @@ ll query(node *t,ll start,ll end,ll left,ll right){
         return t->value;    
     } 
     ll mid = (start + end) >> 1;
-    return get(t->l, start, mid, left, right) + get(t->r, mid + 1, end, left, right);
+    return query(t->l, start, mid, left, right) + query(t->r, mid + 1, end, left, right);
 }
 
 // free memory
