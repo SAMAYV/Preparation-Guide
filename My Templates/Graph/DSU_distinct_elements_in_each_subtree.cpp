@@ -36,15 +36,15 @@ void initialise(set<ll>* lst,subset* s,ll n,vector<ll>& values) {
         s[i].parent = i;
     }
 }
-ll find(ll v,subset* s){
+ll find(ll x,subset* s){
     if(s[x].parent == x)
         return x;
     s[x].parent = find(s[x].parent,s);
     return s[x].parent;
 }
 void unio(ll a,ll b,subset* s,set<ll>* lst){
-    ll a = find(a,s);
-    ll b = find(b,s);
+    a = find(a,s);
+    b = find(b,s);
     if(a != b){
         if(lst[a].size() < lst[b].size()){
             swap(a, b);

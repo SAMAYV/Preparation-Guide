@@ -4,7 +4,7 @@ void dfs(vector<ll>* edges,ll curr,ll par,ll d){
 	depth[curr] = d;
 	parent[curr] = par;
 	for(auto it : edges[curr]){
-		if(it != prev){
+		if(it != par){
 			dfs(edges,it,curr,d + 1);
 		}
 	}
