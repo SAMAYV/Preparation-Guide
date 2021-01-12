@@ -7,8 +7,17 @@
 
 ll const maxn = 1e5 + 5;
 vector<ll> *vec[maxn];
-ll cnt[maxn];
-ll col[maxn];
+ll cnt[maxn], col[maxn], sz[maxn];
+
+void getsz(ll v,ll p,vector<ll>* edges){
+    sz[v] = 1;                  // every vertex has itself in its subtree
+    for(auto u : edges[v]){
+        if(u != p){
+            getsz(u, v, edges);
+            sz[v] += sz[u];     // add size of child u to its parent(v)
+        }
+    }
+}
 
 void dfs(ll v,ll p,bool keep,vector<ll>* edges){
     ll mx = -1, bigChild = -1;

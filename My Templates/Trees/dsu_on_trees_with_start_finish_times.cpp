@@ -8,9 +8,20 @@
 
 ll const maxn = 1e5 + 5;
 ll cnt[maxn], col[maxn];
-ll st[maxn], ft[maxn], ver[maxn];
+ll st[maxn], ft[maxn], ver[maxn], sz[maxn];
 
 ll timer = 0;
+
+void getsz(ll v,ll p,vector<ll>* edges){
+    sz[v] = 1;                  // every vertex has itself in its subtree
+    for(auto u : edges[v]){
+        if(u != p){
+            getsz(u, v, edges);
+            sz[v] += sz[u];     // add size of child u to its parent(v)
+        }
+    }
+}
+
 void start_finish_times(ll v,ll p,vector<ll>* edges){
     st[v] = timer;
     ver[timer] = v;
@@ -22,7 +33,6 @@ void start_finish_times(ll v,ll p,vector<ll>* edges){
     }
     ft[v] = timer++;
 }
-
 
 void dfs(ll v,ll p,bool keep,vector<ll>* edges){
     ll mx = -1, bigChild = -1;
