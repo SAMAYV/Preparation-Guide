@@ -54,9 +54,4 @@ int query(int a, int b) {
     return res;
 }
 
-int main() 
-{
-
-    return 0; 
-}
  

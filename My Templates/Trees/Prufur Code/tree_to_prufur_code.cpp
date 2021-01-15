@@ -65,7 +65,3 @@ vector<ll> tree_to_prufur_code(vector<ll>* edges,ll n){
 	}
 	return prufur;
 }
-int main()
-{
-	return 0;
-}

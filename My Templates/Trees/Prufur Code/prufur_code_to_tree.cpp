@@ -48,7 +48,3 @@ vector<pair<ll,ll>> prufur_code_to_tree(vector<ll> prufur){
 	edges.push_back({curr_leaf,n-1});
 	return edges;
 }
-int main()
-{
-	return 0;
-}

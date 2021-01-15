@@ -1,18 +1,19 @@
 struct subset {
-    int rank;
-    int parent;
+    ll rank;
+    ll parent;
 };
 
-int find(int x,subset* s){
-    if(s[x].parent==x)
+ll find(ll x,subset* s){
+    if(s[x].parent == x){
         return x;
+    }
     s[x].parent = find(s[x].parent,s);
     return s[x].parent;
 }
 
-void unio(int x,int y,subset* s){
-    int p1 = find(x,s);
-    int p2 = find(y,s);
+void unio(ll x,ll y,subset* s){
+    ll p1 = find(x,s);
+    ll p2 = find(y,s);
     if(s[p1].rank == s[p2].rank){
         s[p1].rank++;
         s[p2].parent = p1;
@@ -56,9 +57,4 @@ void compute_LCAs(ll n,vector<ll>* edges,vector<vector<ll>>& queries){
     dfs(0,edges,queries,s);
 }
 
-int main() 
-{
-
-    return 0; 
-}
  

@@ -102,8 +102,3 @@ void printNodesSumToS(BinaryTreeNode<int> *root,int s){
     }
 
 }
-int main()
-{
-	
-	return 0;
-}

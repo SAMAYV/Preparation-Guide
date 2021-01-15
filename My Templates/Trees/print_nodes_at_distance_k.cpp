@@ -96,9 +96,3 @@ void nodesAtDistanceK(BinaryTreeNode<int> *root,int node,int k){
     BinaryTreeNode<int> *temp = root;
     nodes(root,temp,k,hnode,node);
 }
-
-int main()
-{
-		
-	return 0;
-}
