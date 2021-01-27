@@ -1,8 +1,6 @@
-https://atcoder.jp/contests/abc187/tasks/abc187_d
 http://www.usaco.org/index.php?page=viewproblem2&cpid=646 (cute! DSU)
 http://www.usaco.org/index.php?page=viewproblem2&cpid=743 (stack Nice!)
 http://www.usaco.org/index.php?page=viewproblem2&cpid=574 (easy bounded knapsack)
-https://atcoder.jp/contests/abc187/tasks/abc187_e (euler_tour Easy)
 https://www.hackerearth.com/practice/data-structures/advanced-data-structures/fenwick-binary-indexed-trees/practice-problems/algorithm/mancunian-and-twin-permutations-d988930c/description/
 http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1620 (aho_corassick)
 https://codeforces.com/contest/321/problem/C (centroid)
