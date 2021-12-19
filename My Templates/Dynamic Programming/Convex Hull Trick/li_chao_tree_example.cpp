@@ -1,6 +1,12 @@
 // https://www.codechef.com/NOV17/problems/POLY
 // https://robert1003.github.io/2020/02/06/li-chao-segment-tree.html
 
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+#define ll long long
+
 const ll N = 1e5 + 5;
 const ll C = 1e5 + 5;
 const ll T = 10;
@@ -47,7 +53,7 @@ void init(){
         cin >> d >> c >> b >> a;
         Poly p = {a, b, c, d};
         insert(M, C, p);
-        REP(i,0,M) ans[i] = min(ans[i], p(i));
+        for(int i = 0; i < M; i++) ans[i] = min(ans[i], p(i));
     }
 }
 
@@ -64,7 +70,6 @@ void solve(){
 
 int main()
 {
-    i_os;
     ll t;
     cin >> t;
     while(t--){

@@ -18,17 +18,13 @@ void compute(ll i,ll jleft,ll jright,ll kleft,ll kright)
             best = dp[i - 1][k] + C[k + 1][jmid]; 
             bestk = k;
             state[i][jmid] = k;
-        } 
+        }
     } 
     dp[i][jmid] = best;
 
     // Divide and conquer 
-    if(jleft <= jmid - 1){
-        compute(i, jleft, jmid - 1, kleft, bestk);
-    } 
-    if(jmid + 1 <= jright){
-        compute(i, jmid + 1, jright, bestk, kright);
-    } 
+    compute(i, jleft, jmid - 1, kleft, bestk);
+    compute(i, jmid + 1, jright, bestk, kright); 
 }
 
 void solve(ll n,ll m){

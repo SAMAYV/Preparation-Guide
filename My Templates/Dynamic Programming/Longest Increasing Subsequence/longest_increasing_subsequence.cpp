@@ -1,12 +1,17 @@
-vector<ll> lis(vector<ll>& arr){
-    ll n = arr.size();
-    vector<ll> d(n+1,1e9);
-    vector<ll> index(n+1,-1);
-    vector<ll> parent(n+1,-1);
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+vector<int> lis(vector<int>& a){
+    int n = a.size();
+    vector<int> d(n+1,1e9);
+    vector<int> index(n+1,-1);
+    vector<int> parent(n+1,-1);
     d[0] = -1e9;
 
-    REP(i,0,n){
-        ll j = upper_bound(d.begin(), d.end(), arr[i]) - d.begin();
+    for(int i = 0; i < n; i++){
+        int j = upper_bound(d.begin(), d.end(), a[i]) - d.begin();
         if(d[j-1] < a[i] && a[i] < d[j]){
             index[j] = i;
             d[j] = a[i];
@@ -14,25 +19,20 @@ vector<ll> lis(vector<ll>& arr){
         }
     }
 
-    ll len = 0;
-    REP(i,0,n+1){
+    int len = 0;
+    for(int i = 0; i <= n; i++){
         if(d[i] < 1e9)
             len = i;
     }
-    vector<ll> ans;
-    ll curr = index[len];
+    vector<int> ans;
+    int curr = index[len];
     while(curr != -1){
-    	ans.push_back(arr[curr]);
+    	ans.push_back(a[curr]);
     	curr = parent[curr];
     }
-    reverse(ans.begin(),ans.end());
+    reverse(ans.begin(), ans.end());
     return ans;
 }
 // d[i] will be the element at which a subsequence of length i terminates. 
 // If there are multiple such sequences, then we take the one that ends in the smallest element.
 // parent[i] will be the index of the previous element for the optimal subsequence ending in element i.
-
-int main()
-{
-	return 0;
-}

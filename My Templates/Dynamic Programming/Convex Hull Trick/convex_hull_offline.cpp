@@ -1,3 +1,9 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+#define ll long long
+
 typedef ll ftype;
 typedef complex<ftype> point;
 #define x real

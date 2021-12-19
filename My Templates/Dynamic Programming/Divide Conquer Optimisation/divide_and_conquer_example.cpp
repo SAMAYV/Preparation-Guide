@@ -22,12 +22,8 @@ void compute(ll i,ll jleft,ll jright,ll kleft,ll kright)
         } 
     } 
     // Divide and conquer 
-    if(jleft <= jmid - 1){
-        compute(i, jleft, jmid - 1, kleft, bestk);
-    } 
-    if(jmid + 1 <= jright){
-        compute(i, jmid + 1, jright, bestk, kright);
-    } 
+    compute(i, jleft, jmid - 1, kleft, bestk);
+    compute(i, jmid + 1, jright, bestk, kright); 
 }
 
 void solve(ll n,ll m,ll arr[]){

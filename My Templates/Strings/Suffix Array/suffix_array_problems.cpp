@@ -12,11 +12,11 @@ ll distinct_substrings(string s){
 	return ans;	
 }
 
-// https://www.spoj.com/problems/LPS/
+// https://www.spoj.com/problems/LCS/
 ll longest_common_substring(string s,string b){
     ll n1 = s.size();
     s.push_back('$');
-    s += b;;
+    s += b;
     s.push_back('#');
 	n = s.size();
 	constructSA();

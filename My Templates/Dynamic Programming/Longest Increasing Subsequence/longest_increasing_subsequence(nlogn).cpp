@@ -1,17 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
 int main()
 {
-	ll n;
-	cin>>n;
-	ll arr[n];
-	REP(i,0,n) cin>>arr[i];
+	int n;
+	cin >> n;
+	int arr[n];
+	for(int i = 0; i < n; i++) cin >> arr[i];
 
 	// L stores at ith index the minimum ending index of increasing subsequence of length i+1 
 	// Lv stores at ith index the minimum ending index value of increasing subsequence of length i+1
 	// Lv will be increasing 
 
-	ll L[n],R[n],Lv[n];
+	int L[n],R[n],Lv[n];
 
-	REP(i,0,n){
+	for(int i = 0; i < n; i++){
 		L[i] = 1e18;
 		Lv[i] = 1e18;
 		R[i] = -1;
@@ -20,8 +25,8 @@ int main()
 	L[0] = 0;
 	Lv[0] = arr[0];
 
-	REP(i,1,n){
-		ll p = upper_bound(Lv,Lv+n,arr[i]) - Lv;
+	for(int i = 1; i < n; i++){
+		int p = upper_bound(Lv,Lv+n,arr[i]) - Lv;
 		Lv[p] = arr[i];
 		L[p] = i;
 		if(p > 0)
@@ -30,21 +35,21 @@ int main()
 			R[i] = -1;
 	}
 
-	ll length = 1;
-	REP(i,0,n){
+	int length = 1;
+	for(int i = 0; i < n; i++){
 		if(L[i] != 1e18) length = i+1;
 	}
-	cout<<length<<endl;
+	cout << length << endl;
 
-	vector<ll> v;
-	ll curr = L[length-1];
+	vector<int> v;
+	int curr = L[length-1];
 	while(curr > -1){
 		v.push_back(curr);
 		curr = R[curr];
 	}
 	
 	reverse(v.begin(),v.end());
-	for(auto it:v) cout<<it<<" ";
-	cout<<endl;
+	for(auto it:v) cout << it << " ";
+	cout << endl;
 	return 0;
 }

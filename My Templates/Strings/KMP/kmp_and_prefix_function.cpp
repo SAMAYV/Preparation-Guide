@@ -49,19 +49,19 @@ vector<ll> KMP(string patt,string text){
         }
         if(text[i] == patt[j]){
             j++;
-            v[i] = j;
+            arr[i] = j;
         }
         else {
             while(j > 0){
                 j = v[j-1];
                 if(patt[j] == text[i]){
                     j++;
-                    v[i] = j;
+                    arr[i] = j;
                     break;
                 }
             }
             if(j == 0){
-                v[i] = 0;
+                arr[i] = 0;
             }
         }
     }

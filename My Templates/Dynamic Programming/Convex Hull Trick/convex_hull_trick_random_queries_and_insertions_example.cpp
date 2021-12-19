@@ -1,5 +1,11 @@
 // https://codeforces.com/problemset/problem/319/C
 
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+#define ll long long
+
 const ll is_query = -(1LL<<62);
 struct Line {
     ll m, b;
@@ -42,19 +48,18 @@ struct HullDynamic : public multiset<Line> {
 };
 int main()
 {
-    i_os;
     ll t;
     t = 1;
     while(t--){
         ll n;
         cin>>n;
         ll a[n],b[n];
-        REP(i,0,n) cin>>a[i];
-        REP(i,0,n) cin>>b[i];
+        for(int i = 0; i < n; i++) cin>>a[i];
+        for(int i = 0; i < n; i++) cin>>b[i];
         HullDynamic h;
         h.insert_line(-b[0],-0);
         ll ans;
-        REP(i,1,n){
+        for(int i = 1; i < n; i++){
         	ll p1 = h.eval(a[i]);
         	h.insert_line(-b[i],p1);
         }

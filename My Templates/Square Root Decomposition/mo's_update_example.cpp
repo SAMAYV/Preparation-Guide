@@ -51,7 +51,7 @@ void mo_s_algorithm(vector<Query>& queries,vector<Update>& updates,ll* arr,ll n)
     ll cur_l = 0, cur_r = -1, left = -1;
 
     for(Query q : queries){
-    	// cout<<q.l<<" "<<q.r<<" "<<q.idx<<" "<<q.t<<endl;
+        // do more updates
     	while(q.t > left){
     		left++;
     		// if current updated index is in [cur_l,cur_r]

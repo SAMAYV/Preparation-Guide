@@ -3,6 +3,11 @@
 // dp[i][0][sum]→ count of suffixes that can be formed starting from index i, whose digits add up to sum
 // dp[i][1][sum]→ count of suffixes that can be formed starting from index i, whose digits add up to sum such that the formed suffix is not greater than corresponding suffix in input string
 
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+#define ll long long
 
 ll digit_dp(string ss){
     ll n = ss.size();

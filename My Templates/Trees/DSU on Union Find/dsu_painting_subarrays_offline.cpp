@@ -43,7 +43,7 @@ int main()
     	ll c = query[i].c;
     	for(ll v = find(l,s); v <= r; v = find(v,s)){
         	answer[v] = c;
-        	s[v].parent = v + 1;
+        	s[v].parent = find(v + 1, s);
     	}
 	}
 	return 0;

@@ -1,15 +1,29 @@
 // https://www.hackerearth.com/problem/algorithm/sallu-bhai-and-ias-8838ac8d/
 
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+#define ll long long
+
 ll dp[13][2521][512];
 ll pow1[10];
 ll LCM = 2520;
+
+ll power(ll a,ll n,ll mod){
+	if(n == 0) return 1;
+	ll s = power(a,n/2,mod);
+	s = (s * s) % mod;
+	if(n % 2) s = (s * a) % mod;
+	return s;
+}
 
 ll memo(ll pos,ll cnt,ll f,ll mask,string& num)
 {
     if(pos == num.size()){
     	if(mask == 0) return 0;
     	ll c = 0,p = 0;
-        REP(i,1,10){
+        for(int i = 1; i < 10; i++){
         	if((mask >> (i-1)) & 1){
         		if(cnt % i == 0) c++;
         		p++;
@@ -23,7 +37,7 @@ ll memo(ll pos,ll cnt,ll f,ll mask,string& num)
     }
     ll res = 0;
     ll LMT = f ? num[pos]-'0' : 9;
-    REP(i,0,LMT+1){
+    for(int i = 0; i <= LMT; i++){
     	ll v = pow1[i] + cnt;
 	    v %= LCM;
         ll val = mask;
@@ -37,7 +51,7 @@ ll memo(ll pos,ll cnt,ll f,ll mask,string& num)
 ll solve(string& num)
 {
 	pow1[0] = 0;
-	REP(i,1,10) pow1[i] = power(i,i,LCM);
+	for(int i = 1; i < 10; i++) pow1[i] = power(i,i,LCM);
     memset(dp,-1,sizeof(dp));
     return memo(0,0,1,0,num);
 }

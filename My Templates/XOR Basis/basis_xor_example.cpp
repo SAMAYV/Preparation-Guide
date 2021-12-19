@@ -1,4 +1,5 @@
 // https://codeforces.com/group/qcIqFPYhVr/contest/203881/problem/S
+// medium
 
 ll const d = 32;
 ll basis[d]; 	

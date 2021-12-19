@@ -3,6 +3,12 @@
 
 // https://codeforces.com/contest/1083/problem/E
 
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+#define ll long long
+
 struct rectangle {
 	ll p,q,a;
 };
@@ -57,7 +63,7 @@ ll convex_hull_trick(rectangle* rect,ll n){
 
 	// The lines are inserted in arbitrary order of slope
 	// The query positions are in arbitrary order
-	REP(i,0,n){
+	for(int i = 0; i < n; i++){
 		ll f = h.eval(rect[i].q) + rect[i].p*rect[i].q - rect[i].a;
 		ans = max(ans,f);
 		h.insert_line(-rect[i].p,f);
@@ -66,11 +72,10 @@ ll convex_hull_trick(rectangle* rect,ll n){
 }
 int main()
 {
-	i_os;
 	ll n;
 	cin>>n;
 	rectangle rect[n];
-	REP(i,0,n){
+	for(int i = 0; i < n; i++){
 		cin>>rect[i].p>>rect[i].q>>rect[i].a;
 	}
 	sort(rect,rect+n,compare);

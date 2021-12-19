@@ -1,5 +1,12 @@
 // https://codeforces.com/contest/1083/problem/E
 
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+#define ll long long
+#define ld long double
+
 struct line {
     ll m, c;
     ll eval(ll x){ 
@@ -30,7 +37,7 @@ ll convex_hull_trick(rectangle* rect,ll n){
 	// p are in increasing order and q are in decreasing order
 	// slopes are coming in decreasing order and lines are inserted in deque in increasing order of slope
 	// queries are coming in decreasing order of x 
-	REP(i,0,n){
+	for(int i = 0; i < n; i++){
 		while(d.size() >= 2 && d[d.size()-1].eval(rect[i].q) <= d[d.size()-2].eval(rect[i].q)){
 			d.pop_back();
 		}
@@ -46,10 +53,10 @@ ll convex_hull_trick(rectangle* rect,ll n){
 	// The lines are inserted in sorted order of slopes
 	// The query positions are in arbitrary order
 	vector<ll> ints(n);
-	REP(i,0,n){
+	for(int i = 0; i < n; i++){
 		ints[i] = i;	
 	} 
-	REP(i,0,n){
+	for(int i = 0; i < n; i++){
 		ll idx = *lower_bound(ints.begin(),ints.begin() + d.size() - 1, rect[i].q, cmp);
 		ll f = d[idx].eval(rect[i].q) + rect[i].p*rect[i].q - rect[i].a;
 		ans = max(ans,f);
@@ -64,11 +71,10 @@ ll convex_hull_trick(rectangle* rect,ll n){
 
 int main()
 {
-	i_os;
 	ll n;
 	cin>>n;
 	rectangle rect[n];
-	REP(i,0,n){
+	for(int i = 0; i < n; i++){
 		cin>>rect[i].p>>rect[i].q>>rect[i].a;
 	}
 	sort(rect,rect+n,compare);

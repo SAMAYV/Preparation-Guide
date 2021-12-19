@@ -1,15 +1,20 @@
-void sliding_window_min(ll n,ll k,ll arr[]){
-	deque<ll> q;
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+void sliding_window_min(int n,int k,int arr[]){
+	deque<int> q;
 	q.push_back(arr[0]);
-	REP(i,1,k){
+	for(int i = 1; i < k; i++){
 		while(q.size() > 0 && q.back() >= arr[i]){
 			q.pop_back();
 		}
 		q.push_back(arr[i]);
 	}
-	vector<ll> v;
+	vector<int> v;
 	v.push_back(q.front());
-	REP(i,k,n){
+	for(int i = k; i < n; i++){
 		if(q.size() > 0 && q.front() == arr[i - k]){
 			q.pop_front();
 		}
@@ -24,10 +29,10 @@ void sliding_window_min(ll n,ll k,ll arr[]){
 }
 int main() 
 { 
-	ll n,k;
+	int n,k;
 	cin>>n>>k;
-	ll arr[n];
-	REP(i,0,n){
+	int arr[n];
+	for(int i = 0; i < n; i++){
 		cin>>arr[i];
 	}	
 	sliding_window_min(n,k,arr);

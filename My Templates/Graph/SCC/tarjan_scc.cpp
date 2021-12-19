@@ -31,7 +31,8 @@ void dfs(ll node,vector<ll>* edges)
             onStack[u] = 0;
             cout<<u<<" ";
         }
-        cout<<endl;
+        cout << st.top() << "\n";
+        st.pop();
     }
 }
 

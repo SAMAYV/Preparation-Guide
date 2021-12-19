@@ -1,5 +1,7 @@
 // Here's the implementation, the vectors being represented by bitmasks of length d:
 
+// Let, f(v) be the first position in the vector's binary representation, where the bit is set. We make sure that all the basis vectors each have a different f value.
+
 ll basis[d]; 	// basis[i] keeps the mask of the vector whose f value is i
 ll sz; 			// Current size of the basis
 

@@ -10,6 +10,13 @@
 // On every node of the segment tree, we store the line that maximize(or minimize) the value of the middle i.e. 
 // if the interval of the node is [L,R), then the line stored on it maximize(or minimize) L+R/2.
 
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+#define ll long long
+#define ld long double
+
 const ll C = 1e5 + 5;
 
 struct Line {
@@ -44,9 +51,9 @@ ld query(ll l,ll r,ll x,ll treenode = 1){
   	} 
   	ll mid = (l + r) / 2;
   	if(x < mid){
-  		return max(a[treenode](x), query(l, mid, x, lson));
+  		return max(a[treenode](x), query(l, mid, x, 2*treenode));
   	} 
   	else {
-  		return max(a[treenode](x), query(mid, r, x, rson));	
+  		return max(a[treenode](x), query(mid, r, x, 2*treenode + 1));	
   	} 
 }
