@@ -6,11 +6,7 @@ Huffman coding is used for text compression. It is used to compress a file.
 Types of tries: Compressed tries, Pattern Matching:- Suffix tries.
 In suffix trie, each suffix of a string which we want to insert is placed in the trie and all leaf nodes are removed.
 In huffman coding, any prefix of any code can't be assigned to any character.
-  
-jb bhi tumhe kisi array p traverse krna h recursively...to hmesha start end type k variables use kra kro...instead array ka kuch part pass krne k in recursive call.start end variables use krne se tum visualise achhe se kr paoge......debugging aasan hogi......and also it's a good practice to implement such problems.
 
 cppreference.com
 
 Iterator is a pointer to an element within range of elements within that data structure.
-
-
