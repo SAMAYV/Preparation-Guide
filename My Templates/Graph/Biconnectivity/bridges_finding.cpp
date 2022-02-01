@@ -13,7 +13,7 @@ void dfs(ll v,vector<ll>* edges,ll p = -1){
         else {
             dfs(to,edges,v);
             low[v] = min(low[v], low[to]);
-            if(tin[v] < low[to]){
+            if(low[to] > tin[v]){
                 IS_BRIDGE(v, to);
             }
         }

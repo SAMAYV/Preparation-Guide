@@ -53,7 +53,7 @@ class trie {
     }
 };
 
-void insert(trie* root,string s,int index){
+void insert(trie* root,string& s,int index){
     if(s.length()==index){
         root->leaf = true;
         return;    
@@ -78,7 +78,7 @@ void print(trie* root,string out){
             print(root->children[i],out + t);
     }
 }
-int search(trie* root,string s,int index,string out){
+int search(trie* root,string& s,int index,string& out){
     if(s.length()==index){
         print(root,out);
         return 0;

@@ -56,5 +56,3 @@ void compute_LCAs(ll n,vector<ll>* edges,vector<vector<ll>>& queries){
     }
     dfs(0,edges,queries,s);
 }
-
- 

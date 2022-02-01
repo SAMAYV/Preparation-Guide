@@ -60,9 +60,6 @@ vector<ll> KMP(string patt,string text){
                     break;
                 }
             }
-            if(j == 0){
-                arr[i] = 0;
-            }
         }
     }
     return arr;

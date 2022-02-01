@@ -47,5 +47,3 @@ void tarjan(ll n,vector<ll>* edges){
         if(!vis[i]) dfs(i,edges);
     }
 }
-
- 
