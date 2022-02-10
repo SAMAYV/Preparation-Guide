@@ -22,7 +22,6 @@ void consume_item(shared_future<string>& fut)
     
     cout << fut.get() << " by " << this_thread::get_id() << endl;
 }
-
 int main()
 {
     promise<string> prom;
