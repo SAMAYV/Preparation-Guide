@@ -45,3 +45,6 @@ int main()
     }
     return 0;
 }
+
+/* To deal with exceptions (guarnatee exception safety), we shoud not lock and unlock by ourselves; 
+instead, we should use the RAII principle (Resource Acquisition Is Initialization) */

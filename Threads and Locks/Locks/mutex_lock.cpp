@@ -46,4 +46,6 @@ int main()
 }
 /* But what if we forgot to unlock the mutex at the end of function. 
 In such scenario, one thread will exit without releasing the lock and other threads will remain in waiting.
-This kind of scenario can happen in case some exception came after locking the mutex. To avoid such scenarios we should use std::lock_guard. */
+This kind of scenario can happen in case some exception came after locking the mutex. To avoid such scenarios we should use std::lock_guard. 
+std::unique_lock and std::lock_guard are used to manage locking in exception-safe manner.
+*/
