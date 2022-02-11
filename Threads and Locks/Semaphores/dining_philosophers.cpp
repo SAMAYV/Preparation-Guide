@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include <pthread.h>
+#include <thread>
 #include <semaphore.h>
 #include <unistd.h>
 using namespace std;

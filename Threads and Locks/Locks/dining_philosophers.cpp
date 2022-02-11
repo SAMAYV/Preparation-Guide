@@ -67,12 +67,12 @@ public:
         lock_guard<mutex> right_lock(right_fork.mutex, adopt_lock);
 
         print(" started eating.");
-        this_thread::sleep_for(chrono::milliseconds(rand() * 50));
+        this_thread::sleep_for(chrono::milliseconds((rand() % 100) * 50));
         print(" finished eating.");
     }
     void think()
     {
-        this_thread::sleep_for(chrono::milliseconds(rand() * 150));
+        this_thread::sleep_for(chrono::milliseconds((rand() % 100) * 150));
         print(" is thinking ");
     }
 };
