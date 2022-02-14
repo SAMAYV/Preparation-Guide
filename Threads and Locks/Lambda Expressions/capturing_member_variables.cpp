@@ -25,7 +25,7 @@ public:
 };
 int main(int argc, char **argv)
 {
-    vector<int> vec = {12,3,2,1,8,9,0,2,3,9,7};
+    vector<int> vec = {12, 3, 2, 1, 8, 9, 0, 2, 3, 9, 7};
     
     OddCounter counterObj;
     
