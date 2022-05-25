@@ -2,7 +2,8 @@
 #include <memory>
 using namespace std;
 
-typedef struct Sample {
+typedef struct Sample 
+{
     int internalValue;
     Sample() {
         internalValue = 0;

@@ -12,7 +12,7 @@ public:
     // Just Changed the shared_ptr to weak_ptr
     weak_ptr<Node> parentPtr;
     Node(int val) : value(val) {
-        cout << "Contructor" << endl;
+        cout << "Constructor" << endl;
     }
     ~Node() {
         cout << "Destructor" << endl;

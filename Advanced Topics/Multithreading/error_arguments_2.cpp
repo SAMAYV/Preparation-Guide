@@ -27,5 +27,6 @@ int main()
     return 0;
 }
 
-/* Similarly be careful while passing pointer to memory located on heap to thread. Because it might be possible that some thread deletes that memory before new thread tries to access it.
+/* Similarly be careful while passing pointer to memory located on heap to thread. Because it might be possible that some thread 
+deletes that memory before new thread tries to access it.
 In such scenario accessing invalid address can cause unexpected behaviour. */

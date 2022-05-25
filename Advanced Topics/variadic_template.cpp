@@ -11,7 +11,7 @@ void log() {
 template<typename T, typename ... Args>
 void log(T first, Args ... args) {
     cout << first << "\n";        // Print the First Element
-    log(args ...);                      // Forward the remaining arguments
+    log(args ...);                // Forward the remaining arguments
 }
 int main() 
 {

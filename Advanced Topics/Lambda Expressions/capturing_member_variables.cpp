@@ -12,7 +12,7 @@ public:
     int getCount(){
         return mCounter;
     }
-    void update(vector<int> & vec)
+    void update(vector<int>& vec)
     {
         // Traverse the vector and increment mCounter if element is odd
         // this is captured by value inside lambda

@@ -12,7 +12,8 @@ bool divisible(int num , int den) {
     if(num % den == 0) return true;
     return false;
 }
-int approach_1() {
+int approach_1() 
+{
     int arr[10] = {1, 20, 13, 4, 5, 6, 10, 28, 19, 15};
     int count = 0;
     for(int i = 0; i < sizeof(arr)/sizeof(int); i++) {
@@ -20,9 +21,10 @@ int approach_1() {
     }
     return count;
 }
-int approach_2() {
+int approach_2() 
+{
     int arr[10] = {1, 20, 13, 4, 5, 6, 10, 28, 19, 15};
-    return count_if(arr, arr + sizeof(arr)/sizeof(int) , bind(&divisible, _1, 5));
+    return count_if(arr, arr + sizeof(arr)/sizeof(int), bind(&divisible, _1, 5));
 }
 int main()
 {

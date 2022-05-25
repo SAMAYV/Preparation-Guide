@@ -15,11 +15,11 @@ int main()
     ptr->dummyFunction();       // Will Work
     
     // ptr[0]->dummyFunction(); // This line will not compile.
-    // ptr++;  // This line will not compile.
-    // ptr--;  // This line will not compile.
+    // ptr++;                   // This line will not compile.
+    // ptr--;                   // This line will not compile.
     
     shared_ptr<Sample> ptr2(ptr);
-    if(ptr == ptr2) // Will work
+    if(ptr == ptr2)             // Will work
         cout << "ptr and ptr2 are equal" << endl;
 
     // We can also access the internal raw pointer from shared_ptr object like this

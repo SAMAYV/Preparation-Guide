@@ -46,9 +46,9 @@ int main()
     unique_ptr<Task> taskPtr2(new Task(55));
     if(taskPtr2 != nullptr) cout << "taskPtr2 is not empty" << endl;
 
-    // unique_ptr object is Not copyable
-    // taskPtr = taskPtr2; //compile error
-    // unique_ptr object is Not copyable
+    // unique_ptr object is not copyable
+    // taskPtr = taskPtr2; // compile error
+    // unique_ptr object is not copyable
     // std::unique_ptr<Task> taskPtr3 = taskPtr2;
     {
         // Transfer the ownership

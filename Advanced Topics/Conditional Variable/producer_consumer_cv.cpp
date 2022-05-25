@@ -35,7 +35,7 @@ int main()
     thread chefs[10];
     thread waiters[10];
 
-    /* Initialize customers and cheifs */
+    /* Initialize customers and cheifs */ 
     for(int order = 0; order < 10; order++){
         chefs[order] = thread(makeMeal, order);
         waiters[order] = thread(waiter, order);
