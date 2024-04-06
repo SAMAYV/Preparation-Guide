@@ -32,6 +32,8 @@ int main()
 
     // Create a packaged_task<> that encapsulated the callback i.e. a function
     packaged_task<string(string)> task(getDataFromDB);
+    // Fetch the associated future<> from packaged_task<>
+    future<string> result = task.get_future();
 
     // Create a packaged_task<> that encapsulated a lambda function
     packaged_task<string(string)> task1([](string token){
@@ -42,9 +44,6 @@ int main()
 
     // Create a packaged_task<> that encapsulated a lambda function
     packaged_task<string(string)> task2(move(DBDataFetcher()));
-
-    // Fetch the associated future<> from packaged_task<>
-    future<string> result = task.get_future();
     
     // Pass the packaged_task to thread to run asynchronously
     thread th(move(task), "Arg");
@@ -53,7 +52,7 @@ int main()
     th.join();
 
     // Fetch the result of packaged_task<> i.e. value returned by getDataFromDB()
-    string data =  result.get();
+    string data = result.get();
 
     // Get End Time
     auto end = system_clock::now();

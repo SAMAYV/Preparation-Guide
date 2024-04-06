@@ -2,7 +2,7 @@
 #include <thread>
 using namespace std;
 
-void threadCallback(int const& x)
+void threadCallback(const int& x)
 {
     int& y = const_cast<int&>(x);
     y++;
@@ -19,3 +19,4 @@ int main()
 }
 /* Even if threadCallback accepts arguments as reference but still changes done it are not visible outside the thread.
 Its because x in the thread function threadCallback is reference to the temporary value copied at the new thread’s stack. */
+// To avoid this behaviour, pass ref(x) instead.

@@ -43,8 +43,7 @@ int main()
     string fileData = resultFromFile.get();
 
     // Lambda Function
-    future<string> result = async([](string recvdData)
-    {
+    future<string> result = async([](string recvdData){
         this_thread::sleep_for(seconds(5));
 
         // Do stuff like creating DB Connection and fetching Data

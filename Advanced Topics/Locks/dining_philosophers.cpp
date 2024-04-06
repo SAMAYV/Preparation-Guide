@@ -9,20 +9,20 @@ using namespace std;
 mutex g_lockprint;
 const int no_of_philosophers = 5;
 
-class fork
+class Fork
 {
 public:
-    mutex mutex;
+    mutex m_mutex;
 };
 
 class table
 {
 public:
     atomic<bool> ready{false};
-    vector<fork> forks;
+    vector<Fork> forks;
     table() {
         forks.clear();
-        forks.resize(no_of_philosophers, fork());
+        forks.resize(no_of_philosophers, Fork());
     }
 };
 
@@ -31,12 +31,12 @@ class philosopher
 private:
     string const name;
     table const &dinnertable;
-    fork &left_fork;
-    fork &right_fork;
+    Fork &left_fork;
+    Fork &right_fork;
     thread lifethread;
 
 public:
-    philosopher(string n, table const& t, fork& l, fork& r) 
+    philosopher(string n, table const& t, Fork& l, Fork& r) 
     : name(n), dinnertable(t), left_fork(l), right_fork(r), lifethread(&philosopher::dine, this) {}
 
     ~philosopher() {
@@ -61,10 +61,10 @@ public:
     so that the mutexes are correctly released when the function returns. Eating is simulated with a sleep. */
     void eat()
     {
-        lock(left_fork.mutex, right_fork.mutex);
+        lock(left_fork.m_mutex, right_fork.m_mutex);
 
-        lock_guard<mutex> left_lock(left_fork.mutex, adopt_lock);
-        lock_guard<mutex> right_lock(right_fork.mutex, adopt_lock);
+        lock_guard<mutex> left_lock(left_fork.m_mutex, adopt_lock);
+        lock_guard<mutex> right_lock(right_fork.m_mutex, adopt_lock);
 
         print(" started eating.");
         this_thread::sleep_for(chrono::milliseconds((rand() % 100) * 50));
