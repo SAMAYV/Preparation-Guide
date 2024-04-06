@@ -1,0 +1,51 @@
+https://youtu.be/XI7zep97c-Y?si=d8yCoBefL8t6v2fq
+https://youtu.be/129QkkXUHeQ?si=olgKIhEKM9AnBXub
+
+S -> Single responsibility:
+        The function/class/interface should only do one thing and do it well. Only one behavioral change
+        should be allowed. Code should be as modular as possible.
+
+        * Example: A data pipeline shouldn't be implemented as single class/function but in multiple parts
+        for Extraction, Transformation, and loading on a high level.
+
+O -> Open Closed Principle:
+        A class should be open to extension but closed to modification, i.e. if a new functionality needs
+        to be added we should allow extension of class instead of modification.
+
+        * Example: If we wish to implement a data pipeline and one of the parts of the pipeline is saving the
+        data to DB, Firstly we should have a different class for that particular function and not a single
+        class for the complete data pipeline(FOLLOW SINGLE RESPONSIBILITY).
+        Now when scope expands, and we wish to save data to both sql and mongodb we should implement 2
+        different classes for that instead of a single DataLoading class.
+        We should implement a DataLoading Interface(Abstract Class in python) and then implement
+        DataLoadingSQL and DataLoadingMongoDB Classes which extend the DataLoading Interface(inherit from the
+        Abstract class).
+
+L -> Liskov's Substitution:
+        Liskov's substitution suggests that we implement classes and interfaces in such a way that we should
+        be able to replace the instance of parent class with the instance of subclass without fearing
+        breakage. Although we can expect unexpected behaviour.
+
+        * Example: If we implement a vehicle class/Interface and a then implement Car and Bike classes which
+        inherit from Vehicle class/Interface, we should be able to replace instances of Vehicle class with
+        Car/Bike class as they implement the basic responsibility of the Vehicle class and support extra
+        features if at all.
+
+I -> Interface Segmentation:
+        We shouldn't implement an interface with a very broad scope but implement multiple interfaces with
+        narrower scopes, it might be somewhat considered similar to Single responsibility.
+
+        * Example: If we wish to implement a restaurant, instead of declaring a RestaurantEmployee Interface/
+        Class we should instead declare different interfaces for Cooking, Support and Management staff.
+
+D -> Dependency Inversion:
+        Class should depend on interface instead of concrete classes. Wherever possible to make the code
+        generic we should declare interfaces and further pass instances of subclasses whenever necessary.
+        This way in case the business logic changes we can adapt to them faster without major implementation
+        changes.
+
+        * Example: We have 2 interfaces Keyboard and Mouse, each interface is extended by 2 classes Wired and
+        Bluetooth respectively.
+        If we implement a Desktop class, instead of statically declaring its keyboard and mouse we can
+        dynamically do so by passing the type of keyboard and mouse at the time of construction.
+
