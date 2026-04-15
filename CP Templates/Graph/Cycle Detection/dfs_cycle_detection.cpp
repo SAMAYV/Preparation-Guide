@@ -1,42 +1,51 @@
-bool dfs(ll ind,ll* state,vector<ll>* edges,map<pair<ll,ll>,bool>& um){
-	state[ind] = 1;
-	for(auto it : edges[ind]){
-		if(state[it] == 1 && um.count({ind,it}) == 0){
-			return 1;
-		}
-		if(state[it] == 0){
-			um[{ind,it}] = 1;
-			um[{it,ind}] = 1;
-			if(dfs(it,state,edges,um)) return 1;
-		}
-	}
-	state[ind] = 2;
-	return 0;
+bool dfs(int node, int par, vector<vector<int>>& adj,
+         vector<int>& state, vector<int>& parent,
+         vector<int>& cycle) {
+
+    state[node] = 1;
+
+    for (auto it : adj[node]) {
+        if (it == par) continue;
+
+        if (state[it] == 1) {
+            // 🔥 Cycle found → reconstruct
+            int curr = node;
+            cycle.push_back(it);
+
+            while (curr != it) {
+                cycle.push_back(curr);
+                curr = parent[curr];
+            }
+
+            cycle.push_back(it); // to complete cycle
+            reverse(cycle.begin(), cycle.end());
+            return true;
+        }
+
+        if (state[it] == 0) {
+            parent[it] = node;
+            if (dfs(it, node, adj, state, parent, cycle))
+                return true;
+        }
+    }
+
+    state[node] = 2;
+    return false;
 }
 
-void Cycle_Detection(ll n,vector<ll>* edges){
-	map<pair<ll,ll>,bool> um;
-	ll* state = new ll[n];
-	REP(i,0,n) state[i] = 0;
-	REP(i,0,n){
-		if(state[i] == 0){
-			if(dfs(i,state,edges,um)){
-				cout<<"Cycle found"<<endl;
-			}
-		}
-	}
-}
+void findCycle(int n, vector<vector<int>>& adj) {
+    vector<int> state(n, 0), parent(n, -1), cycle;
 
-int main() 
-{ 
-	ll n,e;
-	cin>>n>>e;
-	vector<ll> edges[n];
-	REP(i,0,e){
-		ll x,y;
-		cin>>x>>y;
-		edges[x-1].push_back(y-1);
-		edges[y-1].push_back(x-1);
-	}
-	return 0;	
-} 
+    for (int i = 0; i < n; i++) {
+        if (state[i] == 0) {
+            if (dfs(i, -1, adj, state, parent, cycle)) {
+                cout << "Cycle found:\n";
+                for (auto x : cycle) cout << x << " ";
+                cout << endl;
+                return;
+            }
+        }
+    }
+
+    cout << "No cycle\n";
+}
