@@ -5,6 +5,7 @@ def counter():
         num += 1
         return num
     return incrementer
+
 c = counter()
 
 print (c)

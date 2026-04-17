@@ -1,6 +1,6 @@
 import time
-from Concurrency.threading.workers.WikiWorker import WikiWorker
-from Concurrency.threading.workers.YahooFinanceWorkers import YahooFinanceScheduler
+from workers.WikiWorker import WikiWorker
+from workers.YahooFinanceWorkers import YahooFinanceScheduler
 from multiprocessing import Queue
 
 # def main():

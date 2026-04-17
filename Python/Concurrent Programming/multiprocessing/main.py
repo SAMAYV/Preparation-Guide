@@ -1,35 +1,33 @@
 import time
+import os
 from multiprocessing import Pool, cpu_count
-import threading
 
-def check_val_in_list(x, i, number_of_processes, queue):
-    max_number_to_check = 10**8
-    lower = int(i * max_number_to_check / number_of_processes)
-    upper = int((i + 1) * max_number_to_check / number_of_processes)
-    number_of_hits = 0
-    for i in range(lower, upper):
-        if i in x:
-            number_of_hits += 1
-    queue.put((lower, upper, number_of_hits))
-
+NUM_PROCESSES = 3  # Use 3 processes explicitly for 3 tasks
 
 def power(x, y):
-    return x**y
-
+    print(f"Calculating {x}^{y} in Process ID: {os.getpid()}")
+    # Add some work to make the task substantial enough
+    time.sleep(0.5)  # Simulate some computation
+    result = x**y
+    print(f"Finished {x}^{y} = {result} in Process ID: {os.getpid()}")
+    return result
 
 def main():
-    num_processes = max(1, cpu_count() - 1)
-    lis = [(1, 2), (2, 8), (3, 1)]
     start_time = time.time()
+    lis = [(1, 2), (2, 8), (3, 1)]
 
-    pool = Pool(num_processes)
+    print(f"Main process ID: {os.getpid()}")
+    print(f"Number of processes in pool: {NUM_PROCESSES}")
+    print(f"Number of CPUs: {cpu_count()}")
+    print("-" * 50)
 
-    with pool as mp_pool:
+    # Create a pool of processes
+    with Pool(processes=NUM_PROCESSES) as mp_pool:
         result = mp_pool.starmap(power, lis)
 
-    print(result)
-
-    print("execution time:", time.time() - start_time)
+    print("-" * 50)
+    print(f"Results: {result}")
+    print(f"Execution time: {time.time() - start_time:.2f} seconds")
 
 
 if __name__ == "__main__":

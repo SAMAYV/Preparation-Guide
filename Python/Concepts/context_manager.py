@@ -3,7 +3,6 @@ import sqlite3
 
 class DataConn:
     """"""
-
     def __init__(self, db_name):
         """Constructor"""
         self.db_name = db_name

@@ -1,8 +1,9 @@
 import threading
 import os
  
-def task1():
+def task1(*args):
     print("Task 1 assigned to thread: {}".format(threading.current_thread().name))
+    print(*args)
     print("ID of process running task 1: {}".format(os.getpid()))
  
 def task2():
@@ -10,12 +11,10 @@ def task2():
     print("ID of process running task 2: {}".format(os.getpid()))
  
 if __name__ == "__main__":
- 
     print("ID of process running main program: {}".format(os.getpid()))
- 
     print("Main thread name: {}".format(threading.current_thread().name))
  
-    t1 = threading.Thread(target=task1, name='t1')
+    t1 = threading.Thread(target=task1, name='t1', args=('A', 'B'))
     t2 = threading.Thread(target=task2, name='t2')
  
     t1.start()
