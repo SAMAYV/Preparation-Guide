@@ -33,35 +33,3 @@ vector<ll> KMP(string patt,string text){
     }
     return indices;
 }
-
-vector<ll> KMP(string patt,string text){
-    vector<ll> v = prefix_function(patt);
-    ll j = 0;
-    ll n = text.size();
-
-    // arr[i] stores length of longest suffix of text ending at index i which is also a prefix of string patt
-    vector<ll> arr(n,0);
-    REP(i,0,n+1){
-        if(j == patt.size()){
-            j = v[j-1];
-        }
-        if(i == n){
-            break;
-        }
-        if(text[i] == patt[j]){
-            j++;
-            arr[i] = j;
-        }
-        else {
-            while(j > 0){
-                j = v[j-1];
-                if(patt[j] == text[i]){
-                    j++;
-                    arr[i] = j;
-                    break;
-                }
-            }
-        }
-    }
-    return arr;
-}

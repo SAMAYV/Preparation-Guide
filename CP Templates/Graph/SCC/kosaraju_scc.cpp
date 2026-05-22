@@ -19,7 +19,6 @@ void dfs2(ll ind,vector<bool>& visited,vector<ll>* edges,vector<ll>& v){
 }
 
 vector<vector<ll>> KosaRaju(vector<ll>* edges,vector<ll>* edgesT,ll n){
-	vector<vector<ll>> components;
 	stack<ll> s;
 	vector<bool> visited(n,0);
 	REP(i,0,n){
@@ -28,11 +27,11 @@ vector<vector<ll>> KosaRaju(vector<ll>* edges,vector<ll>* edgesT,ll n){
 		}
 	}
 	vector<bool> visited2(n,0);
+	vector<vector<ll>> components;
 	while(s.size()){
 		vector<ll> v;
 		dfs2(s.top(),visited2,edgesT,v);
 		components.push_back(v);
-		s.pop();
 		while(s.size() > 0 && visited2[s.top()] == 1){
 			s.pop();
 		}

@@ -1,5 +1,6 @@
 /*
-Harshit gave Aahad an array of size N and asked to minimize the difference between the maximum value and minimum value by modifying the array under the condition that each array element either increase or decrease by k(only once).
+Harshit gave Aahad an array of size N and asked to minimize the difference between the maximum value and minimum value by modifying the array under the 
+condition that each array element either increase or decrease by k(only once).
 It seems difficult for Aahad so he asked for your help
 
 Input Format

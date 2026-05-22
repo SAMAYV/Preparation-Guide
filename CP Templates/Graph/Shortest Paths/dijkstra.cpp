@@ -16,10 +16,6 @@ void dijkstra(ll n,vector<pair<ll,ll>>* edges,ll st){
 			}
 		}
 	}
-	REP(i,0,n){
-		cout<<distance[i]<<" ";
-	}
-	cout<<endl;
 }
 int main() 
 { 

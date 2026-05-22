@@ -21,11 +21,6 @@ void Prim(ll n,vector<pair<ll,ll>>* edges){
 		}
 		visited[ver] = 1;
 	}
-
-	REP(i,1,n){
-		cout<<i+1<<" "<<parent[i]+1<<" "<<distance[i]<<endl;
-	}
-	cout<<endl;
 }
 int main() 
 { 

@@ -30,13 +30,13 @@ public:
             dependency[course] |= 1 << prerequisite;
         }
 
-        // prerequisites[i]: prerequisites mask of mask i, the set bits is prerequisites
-        vector<int> prerequisites(1 << n, 0);
+        // prerequisites[i]: mask of required courses of mask i, the set bits is prerequisites
+        vector<int> dependencyMask(1 << n, 0);
         // iterate all mask and generate prerequisites mask of each mask
         for (int i = 0; i < (1 << n); ++i) {
             for (int j = 0; j < n; ++j) {
                 if (i & (1 << j)) {
-                    prerequisites[i] |= dependency[j];
+                    dependencyMask[i] |= dependency[j];
                 }
             }
         }
@@ -47,18 +47,18 @@ public:
         for (int i = 1; i < (1 << n); ++i) {
             // iterate all submask of mask i, and this mask is the mask of last semester
             // see: https://cp-algorithms.com/algebra/all-submasks.html
+            // try to take mask j courses in this semester
             for (int j = i; j; j = (j - 1) & i) {
                 if (count_setbit(j) > k) {
                     continue;
                 }
 
                 int already_taken = i ^ ((1 << n) - 1);
-                if ((already_taken & prerequisites[j]) == prerequisites[j]) {
+                if ((already_taken & dependencyMask[j]) == dependencyMask[j]) {
                     dp[i] = min(dp[i], dp[i ^ j] + 1);
                 }
             }
         }
-
         return dp[(1 << n) - 1];
     }
 
