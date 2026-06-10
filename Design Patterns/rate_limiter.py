@@ -40,6 +40,38 @@ class RateLimitedExecutor(ABC):
         ...
 
 
+
+Algorithm: 
+
+SlidingWindowRateLimiter
+rate
+requestQueue 
+
+
+
+
+
+
+
+
+
+
+
+
+class RateLimitedExecutor(ABC):
+
+    @abstractmethod
+    def register_task_type(self, task_type: str, *args, **kwargs) -> None:
+        ...
+
+    @abstractmethod
+    def submit(self,
+               task_type: str,
+               attributes: dict[str, str],
+               work: Callable[[], Any]) -> Future:
+        ...
+
+
 Entities:
     
 config: [
